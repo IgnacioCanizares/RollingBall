@@ -3,33 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class TimerTrigger : MonoBehaviour
 {
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        Time.timeScale = 1; // Asegurarse de que el tiempo no esté pausado
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        if(gameObject.tag == "StartTrigger"){
-            Debug.Log("Start Trigger");
-            ScoreManager.instance.SetTimer(true);
+        if(gameObject.tag == "StartTrigger"){ // Si el trigger es de inicio
+            Debug.Log("Start Trigger"); 
+            ScoreManager.instance.SetTimer(true); // Activamos el tiempo
         }
-        else if(gameObject.tag == "EndTrigger"){
+        else if(gameObject.tag == "EndTrigger"){ // Si el trigger es de fin
             Debug.Log("End Trigger");
-            ScoreManager.instance.SetTimer(false);
-            ScoreManager.instance.CalculateTotalScore();
-            GameManager.instance.EndLevel(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 0;
+            ScoreManager.instance.SetTimer(false); // Paramos el tiempo
+            ScoreManager.instance.CalculateTotalScore(); // Calculamos el total de puntos 
+            GameManager.instance.EndLevel(); // Finalizamos el nivel
+            Time.timeScale = 0; // Pausamos el tiempo
         }
     }
 }

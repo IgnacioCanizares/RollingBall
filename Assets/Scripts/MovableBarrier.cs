@@ -14,7 +14,7 @@ public class MovableBarrier : MonoBehaviour
 
     void FixedUpdate()
     {
-        float newX = startX + Mathf.PingPong(Time.time * speed, moveDistance);
-        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+        float newX = startX + Mathf.PingPong(Time.time * speed, moveDistance); // Calcular la nueva posición en X con un movimiento de ida y vuelta (PingPong)
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z); // Asignar la nueva posición
     }
 }

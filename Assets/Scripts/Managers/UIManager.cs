@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
         if (instance == null) // Para hacer un singleton que se comparta entre escenas
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -28,53 +27,36 @@ public class UIManager : MonoBehaviour
         }
         
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ScoreManager.instance.OnScoreChange += UpdateCoinText;
-        ScoreManager.instance.OnTimerChange += UpdateTimerText;
-        
-    }
-
-  
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ScoreManager.instance.OnScoreChange += UpdateCoinText; // Nos subscribimos al evento de cambio de score
+        ScoreManager.instance.OnTimerChange += UpdateTimerText; // Nos subscribimos al evento de cambio de tiempo
     }
 
     void UpdateCoinText()
     {
-        // Update the coin text
-        coinText.text = "Coins: " + ScoreManager.instance.getCoinsCollected().ToString();
+        coinText.text = "Coins: " + ScoreManager.instance.getCoinsCollected().ToString(); // Actualizamos el texto de las monedas
     }
     private void UpdateTimerText()
     {
-        // Update the timer text
-        timerText.text = "Time: " + ScoreManager.instance.getTimer().ToString("F2");
+        timerText.text = "Time: " + ScoreManager.instance.getTimer().ToString("F2"); // Actualizamos el texto del tiempo
     }
 
     public void DisableCurrentUI()
     {
-        // Disable the current UI, not the ui components. All the ui
-        currentUI.SetActive(false);
+        currentUI.SetActive(false); // Desactivamos la UI actual
     }
 
     public void EnableEndLevelUI()
     {
-        // Enable the end level UI
-        endLevelUI.SetActive(true);
+        endLevelUI.SetActive(true); // Activamos la UI de fin de nivel
     }
 
     public void UpdateEndLevelUI()
     {
-        // Update the end level UI
-        coinScoreText.text = "Coins: " + ScoreManager.instance.getCoinsCollected().ToString();
-        timerScoreText.text = "Time: " + ScoreManager.instance.getTimer().ToString("F2");
-        totalScoreText.text = "Total Score: " + ScoreManager.instance.getTotalScore().ToString();
+        coinScoreText.text = "Coins: " + ScoreManager.instance.getCoinsCollected().ToString(); // Actualizamos el texto de las monedas
+        timerScoreText.text = "Time: " + ScoreManager.instance.getTimer().ToString("F2"); // Actualizamos el texto del tiempo
+        totalScoreText.text = "Total Score: " + ScoreManager.instance.getTotalScore().ToString(); // Actualizamos el texto del total de puntos
     }
-
-
 
 }

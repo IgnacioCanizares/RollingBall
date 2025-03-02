@@ -2,23 +2,13 @@ using UnityEngine;
 
 public class DashPowerUp : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player")) // Si el jugador toca el power up
         {
-            other.GetComponent<PlayerController>().AddDash();
-            Destroy(gameObject);
+            other.GetComponent<PlayerController>().AddDash(); // Añadimos el dash al jugador
+            Destroy(gameObject); // Destruimos el power up
         }
     }
 }
